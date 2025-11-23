@@ -1,11 +1,12 @@
 <template>
-  <div>
+  <!-- We must force UApp to be transparent so the body gradient shows through -->
+  <UApp class="bg-transparent">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-  </div>
+  </UApp>
 </template>
 
 <script setup lang="ts">
-// No script needed here, CSS is loaded via nuxt.config.ts
+// No script needed here
 </script>

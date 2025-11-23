@@ -1,3 +1,81 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* --- Global Reset & Typography --- */
+:root {
+  /* Increased opacity to 0.3 so the aurora is actually visible */
+  --brand-primary: rgba(139, 92, 246, 0.3); 
+  --brand-secondary: rgba(14, 165, 233, 0.3);
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Apply the base color here to ensure full coverage */
+  background-color: #f8fafc;
+}
+
+body {
+  /* Make body transparent so we can see the animated pseudo-element behind it */
+  background-color: transparent !important;
+  color: #0f172a !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  margin: 0;
+  position: relative;
+  overflow-x: hidden; /* Prevent scrollbars from the animation */
+}
+
+/* --- The Aurora Animation Layer --- */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: -1; /* Places it behind all content */
+  
+  /* The Gradient Mesh */
+  background-image: 
+    radial-gradient(circle at center, var(--brand-primary) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, var(--brand-secondary) 0%, transparent 50%);
+    
+  /* The Movement */
+  animation: aurora-move 15s ease-in-out infinite alternate;
+}
+
+/* --- Animation Keyframes --- */
+@keyframes aurora-move {
+  0% {
+    transform: translate(0%, 0%) rotate(0deg);
+  }
+  100% {
+    transform: translate(10%, 10%) rotate(5deg);
+  }
+}
+
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 20px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8;
+}
+
+/* --- Text Selection --- */
+::selection {
+  background-color: #ddd6fe;
+  color: #4c1d95;
+}

@@ -1,7 +1,12 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-gray-100">
+  <!-- 
+    Compact Layout:
+    - h-auto: Height is determined by content only
+    - justify-start: Packs items to the top
+  -->
+  <div class="flex flex-col h-auto justify-start bg-transparent">
     <Header />
-    <main class="container mx-auto p-4 flex-grow">
+    <main>
       <slot />
     </main>
     <Footer />
